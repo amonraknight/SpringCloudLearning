@@ -1,0 +1,6 @@
+server:
+  port: 8002
+
+crossmodule:
+  payment:
+    url: http://localhost:8001
