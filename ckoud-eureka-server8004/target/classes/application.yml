@@ -1,11 +1,12 @@
 server:
-  port: 8003
+  port: 8004
 
 eureka:
   instance:
-    hostname: eureka.register.at8003
+    hostname: eureka.register.at8004
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://eureka.register.at8004:8004/eureka/
+      defaultZone: http://eureka.register.at8003:8003/eureka/
+

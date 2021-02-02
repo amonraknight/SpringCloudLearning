@@ -23,7 +23,8 @@ eureka:
     register-with-eureka: true
     fetchRegistry: true
     service-url:
-      defaultZone: http://localhost:8003/eureka
+      #defaultZone: http://localhost:8003/eureka
+      defaultZone: http://eureka.register.at8003:8003/eureka/, http://eureka.register.at8004:8004/eureka/
 
 mybatis:
   #mapper xml location

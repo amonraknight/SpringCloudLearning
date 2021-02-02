@@ -12,6 +12,7 @@
         <module>cloud-consumer-order8002</module>
         <module>cloud-sharedcomponents</module>
         <module>ckoud-eureka-server8003</module>
+        <module>ckoud-eureka-server8004</module>
     </modules>
     <packaging>pom</packaging> <!-- This is the parent project. -->
 
