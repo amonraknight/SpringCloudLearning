@@ -9,3 +9,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://eureka.register.at8004:8004/eureka/
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 2000

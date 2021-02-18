@@ -13,8 +13,12 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderController {
 
+    /*
     @Value(value = "${crossmodule.payment.url}")
     private String PAYMENT_MODULE_URL;
+    */
+    //use eureka application name
+    private String PAYMENT_MODULE_URL="http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;

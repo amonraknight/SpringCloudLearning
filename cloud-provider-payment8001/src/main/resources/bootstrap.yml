@@ -1,0 +1,12 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-service
+  cloud:
+    config:
+      label: master
+      name: application
+      profile: dev
+      uri: http://config.server.at8005:8005
