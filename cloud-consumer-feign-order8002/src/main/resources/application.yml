@@ -1,0 +1,24 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-ordering-service-feign
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://eureka.register.at8003:8003/eureka/, http://eureka.register.at8004:8004/eureka/
+  instance:
+    instance-id: order8002
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+crossmodule:
+  payment:
+    url: http://localhost:8001
+
+
