@@ -32,32 +32,48 @@ public class PaymentController {
         log.info("Insert get a return {}", result);
 
         if (result > 0) {
-            return new ResponseCodeMessage(200, "Payment record created! Server: "+serverPort, result);
+            return new ResponseCodeMessage(200, "Payment record created! Server: " + serverPort, result);
         } else {
-            return new ResponseCodeMessage(500, "Payment not created successfully. Server: "+serverPort, null);
+            return new ResponseCodeMessage(500, "Payment not created successfully. Server: " + serverPort, null);
         }
     }
 
     @GetMapping(value = "/get/{id}")
-    public ResponseCodeMessage create(@PathVariable Long id) {
+    public ResponseCodeMessage getRecord(@PathVariable Long id) {
         Payment result = paymentService.getPaymentById(id);
         if (result != null) {
             log.info("The result is {}", result);
-            return new ResponseCodeMessage(200, "Payment record found! Server: "+serverPort, result);
+            return new ResponseCodeMessage(200, "Payment record found! Server: " + serverPort, result);
         } else {
-            return new ResponseCodeMessage(404, "Payment not found. Server: "+serverPort, null);
+            return new ResponseCodeMessage(404, "Payment not found. Server: " + serverPort, null);
         }
     }
 
-    @GetMapping(value="/discovery")
+    @GetMapping(value = "/getafterawhile/{id}")
+    public ResponseCodeMessage getRecordAfterAWhile(@PathVariable Long id) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Payment result = paymentService.getPaymentById(id);
+        if (result != null) {
+            log.info("The result is {}", result);
+            return new ResponseCodeMessage(200, "Payment record found! Server: " + serverPort, result);
+        } else {
+            return new ResponseCodeMessage(404, "Payment not found. Server: " + serverPort, null);
+        }
+    }
+
+    @GetMapping(value = "/discovery")
     public Object discovery() {
-        List<String> service=discoveryClient.getServices();
-        for(String eachService: service) {
+        List<String> service = discoveryClient.getServices();
+        for (String eachService : service) {
             log.info("Service: {}", eachService);
         }
 
-        List<ServiceInstance> instances= discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for(ServiceInstance eachInstance: instances) {
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance eachInstance : instances) {
             log.info("Instance id: {}", eachInstance.getInstanceId());
         }
 

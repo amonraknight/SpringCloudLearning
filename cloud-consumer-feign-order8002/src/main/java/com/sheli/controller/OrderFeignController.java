@@ -21,4 +21,9 @@ public class OrderFeignController {
     public ResponseCodeMessage<Payment> getPayment(@PathVariable("id") Long id) {
         return paymentFeignService.getPaymentByID(id);
     }
+
+    @GetMapping(value = "/consumer/payment/getAfterAWhile/{id}")
+    public ResponseCodeMessage<Payment> getPaymentAfterAWhile(@PathVariable("id") Long id) {
+        return paymentFeignService.getPaymentAfterAWhileByID(id);
+    }
 }

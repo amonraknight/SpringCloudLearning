@@ -4,7 +4,6 @@ import com.sheli.entities.Payment;
 import com.sheli.entities.ResponseCodeMessage;
 import com.sheli.loadbalancing.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.ServiceInformation;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;

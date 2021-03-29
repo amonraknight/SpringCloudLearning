@@ -10,15 +10,20 @@ eureka:
     register-with-eureka: true
     fetchRegistry: true
     service-url:
-      defaultZone: http://eureka.register.at8003:8003/eureka/, http://eureka.register.at8004:8004/eureka/
+      #defaultZone: http://eureka.register.at8003:8003/eureka/, http://eureka.register.at8004:8004/eureka/
+      defaultZone: http://eureka.register.at8003:8003/eureka/
   instance:
     instance-id: order8002
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
 
-crossmodule:
-  payment:
-    url: http://localhost:8001
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    com.sheli.services.PaymentFeignService: debug
 
 

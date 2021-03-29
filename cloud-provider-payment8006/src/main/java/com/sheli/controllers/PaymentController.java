@@ -32,15 +32,29 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/get/{id}")
-    public ResponseCodeMessage create(@PathVariable Long id) {
+    public ResponseCodeMessage getRecord(@PathVariable Long id) {
         Payment result = paymentService.getPaymentById(id);
         if (result != null) {
             log.info("The result is {}", result);
-            return new ResponseCodeMessage(200, "Payment record found! Server: "+serverPort, result);
+            return new ResponseCodeMessage(200, "Payment record found! Server: " + serverPort, result);
         } else {
-            return new ResponseCodeMessage(404, "Payment not found. Server: "+serverPort, null);
+            return new ResponseCodeMessage(404, "Payment not found. Server: " + serverPort, null);
         }
+    }
 
-
+    @GetMapping(value = "/getafterawhile/{id}")
+    public ResponseCodeMessage getRecordAfterAWhile(@PathVariable Long id) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Payment result = paymentService.getPaymentById(id);
+        if (result != null) {
+            log.info("The result is {}", result);
+            return new ResponseCodeMessage(200, "Payment record found! Server: " + serverPort, result);
+        } else {
+            return new ResponseCodeMessage(404, "Payment not found. Server: " + serverPort, null);
+        }
     }
 }

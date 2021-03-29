@@ -1,0 +1,47 @@
+server:
+  port: 8007
+
+spring:
+  application:
+    name: cloud-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: order_route_1
+          uri: http://localhost:8002
+          predicates:
+            - Path=/consumer/payment/get/*
+
+        - id: order_route_2
+          uri: http://localhost:8002
+          predicates:
+            - Path=/consumer/payment/getAfterAWhile/*
+
+        - id: payment_route_1
+          #uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/get/*
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    service-url:
+      #defaultZone: http://eureka.register.at8003:8003/eureka/, http://eureka.register.at8004:8004/eureka/
+      defaultZone: http://eureka.register.at8003:8003/eureka/
+  instance:
+    instance-id: gateway8007
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+
+
+
+
